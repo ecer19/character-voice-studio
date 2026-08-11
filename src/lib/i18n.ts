@@ -49,6 +49,17 @@ const dict = {
     tr: "Ses oluşturma başarısız oldu",
   },
   errorPreview: { en: "Preview failed", tr: "Önizleme başarısız oldu" },
+
+  view3dButton: { en: "View in 3D", tr: "3D Görüntüle" },
+  generate3dButton: { en: "Generate 3D Model", tr: "3D Model Oluştur" },
+  generating3dButton: {
+    en: "Generating 3D model… this can take a few minutes",
+    tr: "3D model oluşturuluyor… bu birkaç dakika sürebilir",
+  },
+  errorModel3d: {
+    en: "3D model generation failed",
+    tr: "3D model oluşturma başarısız oldu",
+  },
 } as const;
 
 export type TranslationKey = keyof typeof dict;

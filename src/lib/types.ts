@@ -5,6 +5,7 @@ export interface Character {
   appearance: string;
   voice: string;
   image_url: string | null;
+  model_url: string | null;
   created_at: string;
 }
 

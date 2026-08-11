@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { CharacterForm } from "@/components/CharacterForm";
+import { CharacterCard } from "@/components/CharacterCard";
 import { VoiceStudio } from "@/components/VoiceStudio";
 import { VoiceHistory } from "@/components/VoiceHistory";
 import { LanguageToggle } from "@/components/LanguageToggle";
@@ -53,10 +54,13 @@ export default function Home() {
           <CharacterForm onCreated={handleCharacterCreated} />
 
           {character && (
-            <VoiceStudio
-              character={character}
-              onGenerated={() => setHistoryKey((k) => k + 1)}
-            />
+            <>
+              <CharacterCard character={character} onUpdated={setCharacter} />
+              <VoiceStudio
+                character={character}
+                onGenerated={() => setHistoryKey((k) => k + 1)}
+              />
+            </>
           )}
 
           <VoiceHistory refreshKey={historyKey} />
