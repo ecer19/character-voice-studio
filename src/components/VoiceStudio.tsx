@@ -3,7 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { EMOTIONS } from "@/lib/voices";
+import { useLanguage } from "@/lib/language-context";
 import type { Character, VoiceRecording } from "@/lib/types";
+import type { Lang } from "@/lib/i18n";
 
 export function VoiceStudio({
   character,
@@ -12,7 +14,9 @@ export function VoiceStudio({
   character: Character;
   onGenerated: (recording: VoiceRecording) => void;
 }) {
+  const { t } = useLanguage();
   const [text, setText] = useState("");
+  const [textLang, setTextLang] = useState<Lang>("en");
   const [emotion, setEmotion] = useState<string>(EMOTIONS[0].label);
   const [generating, setGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -26,14 +30,21 @@ export function VoiceStudio({
       const res = await fetch("/api/generate-speech", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ character_id: character.id, text, emotion }),
+        body: JSON.stringify({
+          character_id: character.id,
+          text,
+          emotion,
+          language: textLang,
+        }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Speech generation failed");
+      if (!res.ok) throw new Error(data.error ?? t("errorSpeechGeneration"));
       setResult(data.recording);
       onGenerated(data.recording);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Speech generation failed");
+      setError(
+        err instanceof Error ? err.message : t("errorSpeechGeneration")
+      );
     } finally {
       setGenerating(false);
     }
@@ -41,7 +52,7 @@ export function VoiceStudio({
 
   return (
     <div className="flex flex-col gap-4 rounded-xl border border-black/10 dark:border-white/15 p-5">
-      <h2 className="text-lg font-semibold">Voice Studio</h2>
+      <h2 className="text-lg font-semibold">{t("voiceStudioHeading")}</h2>
 
       <div className="flex items-center gap-3">
         {character.image_url && (
@@ -55,23 +66,51 @@ export function VoiceStudio({
         )}
         <div>
           <p className="font-medium">{character.name}</p>
-          <p className="text-xs opacity-70">Voice: {character.voice}</p>
+          <p className="text-xs opacity-70">
+            {t("voiceLabel")}: {character.voice}
+          </p>
         </div>
       </div>
 
-      <label className="flex flex-col gap-1 text-sm">
-        Speech Text (English only)
+      <div className="flex flex-col gap-1 text-sm">
+        <div className="flex items-center justify-between">
+          <span>{t("speechTextLabel")}</span>
+          <div className="inline-flex rounded-full border border-black/15 dark:border-white/20 p-0.5 text-xs">
+            <button
+              type="button"
+              onClick={() => setTextLang("en")}
+              className={`px-2.5 py-1 rounded-full ${
+                textLang === "en" ? "bg-blue-600 text-white" : "opacity-70"
+              }`}
+            >
+              {t("textLanguageEnglish")}
+            </button>
+            <button
+              type="button"
+              onClick={() => setTextLang("tr")}
+              className={`px-2.5 py-1 rounded-full ${
+                textLang === "tr" ? "bg-blue-600 text-white" : "opacity-70"
+              }`}
+            >
+              {t("textLanguageTurkish")}
+            </button>
+          </div>
+        </div>
         <textarea
           className="rounded-md border border-black/15 dark:border-white/20 bg-transparent px-3 py-2"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder="Welcome aboard! We are about to explore a planet no human has ever visited."
+          placeholder={
+            textLang === "tr"
+              ? t("speechTextPlaceholderTr")
+              : t("speechTextPlaceholderEn")
+          }
           rows={3}
         />
-      </label>
+      </div>
 
       <div className="flex flex-col gap-2 text-sm">
-        Emotion
+        {t("emotionLabel")}
         <div className="flex flex-wrap gap-2">
           {EMOTIONS.map((e) => (
             <button
@@ -98,7 +137,7 @@ export function VoiceStudio({
         disabled={generating || !text.trim()}
         className="rounded-md bg-blue-600 text-white px-4 py-2 font-medium disabled:opacity-50"
       >
-        {generating ? "Generating…" : "Generate Speech"}
+        {generating ? t("generatingButton") : t("generateSpeechButton")}
       </button>
 
       {result && (
@@ -118,7 +157,7 @@ export function VoiceStudio({
                 download
                 className="text-xs px-3 py-1.5 rounded bg-black/5 dark:bg-white/10"
               >
-                Download
+                {t("downloadButton")}
               </a>
             )}
             <button
@@ -127,7 +166,7 @@ export function VoiceStudio({
               disabled={generating}
               className="text-xs px-3 py-1.5 rounded bg-black/5 dark:bg-white/10 disabled:opacity-50"
             >
-              Generate Again
+              {t("generateAgainButton")}
             </button>
           </div>
         </div>

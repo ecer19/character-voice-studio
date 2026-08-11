@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { VOICES } from "@/lib/voices";
+import { useLanguage } from "@/lib/language-context";
 import type { Character } from "@/lib/types";
 
 export function CharacterForm({
@@ -9,6 +10,7 @@ export function CharacterForm({
 }: {
   onCreated: (character: Character) => void;
 }) {
+  const { t } = useLanguage();
   const [name, setName] = useState("");
   const [personality, setPersonality] = useState("");
   const [appearance, setAppearance] = useState("");
@@ -27,13 +29,13 @@ export function CharacterForm({
         body: JSON.stringify({ voice: v }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Preview failed");
+      if (!res.ok) throw new Error(data.error ?? t("errorPreview"));
       if (audioRef.current) {
         audioRef.current.src = data.audioUrl;
         await audioRef.current.play();
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Preview failed");
+      setError(err instanceof Error ? err.message : t("errorPreview"));
     } finally {
       setPreviewingVoice(null);
     }
@@ -50,10 +52,12 @@ export function CharacterForm({
         body: JSON.stringify({ name, personality, appearance, voice }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Character generation failed");
+      if (!res.ok) throw new Error(data.error ?? t("errorCharacterGeneration"));
       onCreated(data.character);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Character generation failed");
+      setError(
+        err instanceof Error ? err.message : t("errorCharacterGeneration")
+      );
     } finally {
       setSubmitting(false);
     }
@@ -64,10 +68,10 @@ export function CharacterForm({
       onSubmit={handleSubmit}
       className="flex flex-col gap-4 rounded-xl border border-black/10 dark:border-white/15 p-5"
     >
-      <h2 className="text-lg font-semibold">Create Your Character</h2>
+      <h2 className="text-lg font-semibold">{t("createCharacterHeading")}</h2>
 
       <label className="flex flex-col gap-1 text-sm">
-        Character Name
+        {t("characterNameLabel")}
         <input
           className="rounded-md border border-black/15 dark:border-white/20 bg-transparent px-3 py-2"
           value={name}
@@ -78,7 +82,7 @@ export function CharacterForm({
       </label>
 
       <label className="flex flex-col gap-1 text-sm">
-        Personality
+        {t("personalityLabel")}
         <textarea
           className="rounded-md border border-black/15 dark:border-white/20 bg-transparent px-3 py-2"
           value={personality}
@@ -90,7 +94,7 @@ export function CharacterForm({
       </label>
 
       <label className="flex flex-col gap-1 text-sm">
-        Appearance Description
+        {t("appearanceLabel")}
         <textarea
           className="rounded-md border border-black/15 dark:border-white/20 bg-transparent px-3 py-2"
           value={appearance}
@@ -102,7 +106,7 @@ export function CharacterForm({
       </label>
 
       <div className="flex flex-col gap-2 text-sm">
-        Voice Selection
+        {t("voiceSelectionLabel")}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           {VOICES.map((v) => (
             <div
@@ -126,7 +130,9 @@ export function CharacterForm({
                 disabled={previewingVoice === v}
                 className="text-xs px-2 py-1 rounded bg-black/5 dark:bg-white/10 disabled:opacity-50"
               >
-                {previewingVoice === v ? "Playing…" : "Preview"}
+                {previewingVoice === v
+                  ? t("previewingButton")
+                  : t("previewButton")}
               </button>
             </div>
           ))}
@@ -141,7 +147,7 @@ export function CharacterForm({
         disabled={submitting}
         className="rounded-md bg-blue-600 text-white px-4 py-2 font-medium disabled:opacity-50"
       >
-        {submitting ? "Generating…" : "Generate Character"}
+        {submitting ? t("generatingButton") : t("generateCharacterButton")}
       </button>
     </form>
   );

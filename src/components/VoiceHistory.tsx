@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useLanguage } from "@/lib/language-context";
 import type { VoiceRecording } from "@/lib/types";
 
 export function VoiceHistory({ refreshKey }: { refreshKey: number }) {
+  const { t } = useLanguage();
   const [recordings, setRecordings] = useState<VoiceRecording[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -28,12 +30,12 @@ export function VoiceHistory({ refreshKey }: { refreshKey: number }) {
 
   return (
     <div className="flex flex-col gap-3 rounded-xl border border-black/10 dark:border-white/15 p-5">
-      <h2 className="text-lg font-semibold">Voice History</h2>
+      <h2 className="text-lg font-semibold">{t("voiceHistoryHeading")}</h2>
 
-      {loading && <p className="text-sm opacity-70">Loading…</p>}
+      {loading && <p className="text-sm opacity-70">{t("loading")}</p>}
       {error && <p className="text-sm text-red-500">{error}</p>}
       {!loading && recordings.length === 0 && (
-        <p className="text-sm opacity-70">No recordings yet.</p>
+        <p className="text-sm opacity-70">{t("noRecordingsYet")}</p>
       )}
 
       <div className="flex flex-col gap-3">
@@ -67,7 +69,7 @@ export function VoiceHistory({ refreshKey }: { refreshKey: number }) {
                   download
                   className="text-xs px-3 py-1.5 rounded bg-black/5 dark:bg-white/10 whitespace-nowrap"
                 >
-                  Download
+                  {t("downloadButton")}
                 </a>
               </div>
             )}

@@ -7,10 +7,11 @@ import { EMOTIONS, emotionTag } from "@/lib/voices";
 
 export async function POST(request: Request) {
   const body = await request.json();
-  const { character_id, text, emotion } = body as {
+  const { character_id, text, emotion, language } = body as {
     character_id?: string;
     text?: string;
     emotion?: string;
+    language?: "en" | "tr";
   };
 
   if (!character_id || !text?.trim()) {
@@ -22,13 +23,7 @@ export async function POST(request: Request) {
   if (!emotion || !EMOTIONS.some((e) => e.label === emotion)) {
     return NextResponse.json({ error: "invalid emotion" }, { status: 400 });
   }
-  // eleven-v3 tarafında sadece İngilizce metin desteklenir; basit bir ASCII kontrolü.
-  if (/[^\x00-\x7F]/.test(text)) {
-    return NextResponse.json(
-      { error: "Only English speech text is supported" },
-      { status: 400 }
-    );
-  }
+  const languageCode = language === "tr" ? "tr" : "en";
 
   try {
     const { data: character, error: charError } = await supabase
@@ -44,7 +39,7 @@ export async function POST(request: Request) {
     const ttsText = tag ? `${tag} ${text}` : text;
 
     const result = await fal.subscribe("fal-ai/elevenlabs/tts/eleven-v3", {
-      input: { text: ttsText, voice: character.voice },
+      input: { text: ttsText, voice: character.voice, language_code: languageCode },
     });
 
     const audio = result.data.audio;

@@ -4,11 +4,14 @@ import { useEffect, useState } from "react";
 import { CharacterForm } from "@/components/CharacterForm";
 import { VoiceStudio } from "@/components/VoiceStudio";
 import { VoiceHistory } from "@/components/VoiceHistory";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/lib/language-context";
 import type { Character } from "@/lib/types";
 
 const STORAGE_KEY = "cvs_character_id";
 
 export default function Home() {
+  const { t } = useLanguage();
   const [character, setCharacter] = useState<Character | null>(null);
   const [historyKey, setHistoryKey] = useState(0);
   const [restoring, setRestoring] = useState(true);
@@ -35,15 +38,16 @@ export default function Home() {
 
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 flex flex-col gap-6 p-4 sm:p-8">
-      <header>
-        <h1 className="text-2xl font-bold">Character Voice Studio</h1>
-        <p className="text-sm opacity-70">
-          Create a character and bring it to life with voice.
-        </p>
+      <header className="flex items-start justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold">{t("appTitle")}</h1>
+          <p className="text-sm opacity-70">{t("appSubtitle")}</p>
+        </div>
+        <LanguageToggle />
       </header>
 
       {restoring ? (
-        <p className="text-sm opacity-70">Loading…</p>
+        <p className="text-sm opacity-70">{t("loading")}</p>
       ) : (
         <>
           <CharacterForm onCreated={handleCharacterCreated} />
