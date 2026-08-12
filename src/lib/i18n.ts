@@ -88,6 +88,46 @@ const dict = {
     tr: "Bir karakter tasarla, onu hayat bulmuş şekilde gör ve konuşturmasını dinle — yapay zekâ ile.",
   },
   landingStartButton: { en: "Get Started", tr: "Başla" },
+  landingScrollHint: { en: "Scroll to explore", tr: "Keşfetmek için kaydır" },
+
+  landingHowHeading: { en: "How it works", tr: "Nasıl Çalışır" },
+  landingStep1Title: { en: "Design your character", tr: "Karakterini Tasarla" },
+  landingStep1Desc: {
+    en: "Give it a name, a personality, and describe how it should look.",
+    tr: "Bir isim, kişilik ver ve nasıl görünmesi gerektiğini tarif et.",
+  },
+  landingStep2Title: { en: "Choose a voice", tr: "Sesini Seç" },
+  landingStep2Desc: {
+    en: "Preview premium voices and pick the one that fits.",
+    tr: "Kaliteli sesleri önceden dinle ve karakterine en uygununu seç.",
+  },
+  landingStep3Title: { en: "Bring it to life", tr: "Konuştur ve Dinle" },
+  landingStep3Desc: {
+    en: "Write a line, pick an emotion, and hear your character speak.",
+    tr: "Bir metin yaz, bir duygu seç ve karakterinin konuşmasını dinle.",
+  },
+
+  landingFeaturesHeading: { en: "Everything you need", tr: "İhtiyacın Olan Her Şey" },
+  landingFeature1Title: { en: "AI portraits", tr: "Yapay Zekâ Portreleri" },
+  landingFeature1Desc: {
+    en: "Every character gets a unique AI-generated look.",
+    tr: "Her karakter için benzersiz bir yapay zekâ görseli üretilir.",
+  },
+  landingFeature2Title: { en: "Expressive voices", tr: "Duygulu Sesler" },
+  landingFeature2Desc: {
+    en: "Six emotions, from excited to whispering.",
+    tr: "Heyecanlıdan fısıltıya, altı farklı duygu tonu.",
+  },
+  landingFeature3Title: { en: "Edit with words", tr: "Kelimelerle Düzenle" },
+  landingFeature3Desc: {
+    en: "Describe a change and watch your character update instantly.",
+    tr: "Bir değişiklik tarif et, karakterin anında güncellensin.",
+  },
+
+  landingCtaHeading: {
+    en: "Your character is waiting to be heard.",
+    tr: "Karakterin, duyulmayı bekliyor.",
+  },
 } as const;
 
 export type TranslationKey = keyof typeof dict;

@@ -58,7 +58,7 @@ export function AppearanceChat({
   }
 
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-black/10 dark:border-white/15 p-5">
+    <div className="flex flex-col gap-3 rounded-xl border border-white/10 p-5">
       <h3 className="text-base font-semibold">{t("editAppearanceHeading")}</h3>
       <p className="text-xs opacity-60">{t("editAppearanceHint")}</p>
 
@@ -70,7 +70,7 @@ export function AppearanceChat({
               className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm ${
                 m.role === "user"
                   ? "self-end bg-purple-600 text-white"
-                  : "self-start bg-black/5 dark:bg-white/10"
+                  : "self-start bg-white/10"
               }`}
             >
               {m.imageUrl && (
@@ -92,7 +92,7 @@ export function AppearanceChat({
 
       <div className="flex gap-2">
         <input
-          className="flex-1 rounded-md border border-black/15 dark:border-white/20 bg-transparent px-3 py-2 text-sm"
+          className="flex-1 rounded-md border border-white/15 bg-transparent px-3 py-2 text-sm"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {

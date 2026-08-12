@@ -58,3 +58,21 @@ body {
 
 .animate-character-breathe { animation: character-breathe 4.5s ease-in-out infinite; }
 .animate-character-shadow { animation: character-shadow 4.5s ease-in-out infinite; }
+
+@keyframes aurora-spin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.15); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.9; }
+}
+@keyframes bounce-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.animate-aurora-spin { animation: aurora-spin 22s linear infinite; }
+.animate-glow-pulse { animation: glow-pulse 5s ease-in-out infinite; }
+.animate-bounce-y { animation: bounce-y 2s ease-in-out infinite; }

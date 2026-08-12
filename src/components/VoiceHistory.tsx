@@ -29,7 +29,7 @@ export function VoiceHistory({ refreshKey }: { refreshKey: number }) {
   }, [refreshKey]);
 
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-black/10 dark:border-white/15 p-5">
+    <div className="flex flex-col gap-3 rounded-xl border border-white/10 p-5">
       <h2 className="text-lg font-semibold">{t("voiceHistoryHeading")}</h2>
 
       {loading && <p className="text-sm opacity-70">{t("loading")}</p>}
@@ -42,7 +42,7 @@ export function VoiceHistory({ refreshKey }: { refreshKey: number }) {
         {recordings.map((r) => (
           <div
             key={r.id}
-            className="flex flex-col gap-2 rounded-md border border-black/10 dark:border-white/15 p-3"
+            className="flex flex-col gap-2 rounded-md border border-white/10 p-3"
           >
             <div className="flex items-center gap-2">
               {r.character?.image_url && (
@@ -67,7 +67,7 @@ export function VoiceHistory({ refreshKey }: { refreshKey: number }) {
                 <a
                   href={r.audio_url}
                   download
-                  className="text-xs px-3 py-1.5 rounded bg-black/5 dark:bg-white/10 whitespace-nowrap"
+                  className="text-xs px-3 py-1.5 rounded bg-white/10 whitespace-nowrap"
                 >
                   {t("downloadButton")}
                 </a>

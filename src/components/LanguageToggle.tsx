@@ -6,7 +6,7 @@ export function LanguageToggle() {
   const { lang, setLang } = useLanguage();
 
   return (
-    <div className="inline-flex rounded-full border border-black/15 dark:border-white/20 p-0.5 text-xs">
+    <div className="inline-flex rounded-full border border-white/15 p-0.5 text-xs">
       <button
         type="button"
         onClick={() => setLang("tr")}

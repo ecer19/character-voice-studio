@@ -66,14 +66,14 @@ export function CharacterForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-4 rounded-xl border border-black/10 dark:border-white/15 p-5"
+      className="flex flex-col gap-4 rounded-xl border border-white/10 p-5"
     >
       <h2 className="text-lg font-semibold">{t("createCharacterHeading")}</h2>
 
       <label className="flex flex-col gap-1 text-sm">
         {t("characterNameLabel")}
         <input
-          className="rounded-md border border-black/15 dark:border-white/20 bg-transparent px-3 py-2"
+          className="rounded-md border border-white/15 bg-transparent px-3 py-2"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Luna"
@@ -84,7 +84,7 @@ export function CharacterForm({
       <label className="flex flex-col gap-1 text-sm">
         {t("personalityLabel")}
         <textarea
-          className="rounded-md border border-black/15 dark:border-white/20 bg-transparent px-3 py-2"
+          className="rounded-md border border-white/15 bg-transparent px-3 py-2"
           value={personality}
           onChange={(e) => setPersonality(e.target.value)}
           placeholder="Curious, energetic, confident and slightly sarcastic."
@@ -96,7 +96,7 @@ export function CharacterForm({
       <label className="flex flex-col gap-1 text-sm">
         {t("appearanceLabel")}
         <textarea
-          className="rounded-md border border-black/15 dark:border-white/20 bg-transparent px-3 py-2"
+          className="rounded-md border border-white/15 bg-transparent px-3 py-2"
           value={appearance}
           onChange={(e) => setAppearance(e.target.value)}
           placeholder="A young space explorer with silver hair, round glasses and a futuristic blue jacket."
@@ -114,7 +114,7 @@ export function CharacterForm({
               className={`flex flex-col items-center gap-2 rounded-md border p-2 ${
                 voice === v
                   ? "border-purple-500"
-                  : "border-black/15 dark:border-white/20"
+                  : "border-white/15"
               }`}
             >
               <button
@@ -128,7 +128,7 @@ export function CharacterForm({
                 type="button"
                 onClick={() => handlePreview(v)}
                 disabled={previewingVoice === v}
-                className="text-xs px-2 py-1 rounded bg-black/5 dark:bg-white/10 disabled:opacity-50"
+                className="text-xs px-2 py-1 rounded bg-white/10 disabled:opacity-50"
               >
                 {previewingVoice === v
                   ? t("previewingButton")

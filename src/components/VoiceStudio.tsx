@@ -51,7 +51,7 @@ export function VoiceStudio({
   }
 
   return (
-    <div className="flex flex-col gap-4 rounded-xl border border-black/10 dark:border-white/15 p-5">
+    <div className="flex flex-col gap-4 rounded-xl border border-white/10 p-5">
       <h2 className="text-lg font-semibold">{t("voiceStudioHeading")}</h2>
 
       <div className="flex items-center gap-3">
@@ -75,7 +75,7 @@ export function VoiceStudio({
       <div className="flex flex-col gap-1 text-sm">
         <div className="flex items-center justify-between">
           <span>{t("speechTextLabel")}</span>
-          <div className="inline-flex rounded-full border border-black/15 dark:border-white/20 p-0.5 text-xs">
+          <div className="inline-flex rounded-full border border-white/15 p-0.5 text-xs">
             <button
               type="button"
               onClick={() => setTextLang("en")}
@@ -97,7 +97,7 @@ export function VoiceStudio({
           </div>
         </div>
         <textarea
-          className="rounded-md border border-black/15 dark:border-white/20 bg-transparent px-3 py-2"
+          className="rounded-md border border-white/15 bg-transparent px-3 py-2"
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder={
@@ -120,7 +120,7 @@ export function VoiceStudio({
               className={`text-xs px-3 py-1.5 rounded-full border ${
                 emotion === e.label
                   ? "bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white border-purple-600"
-                  : "border-black/15 dark:border-white/20"
+                  : "border-white/15"
               }`}
             >
               {e.label}
@@ -141,7 +141,7 @@ export function VoiceStudio({
       </button>
 
       {result && (
-        <div className="flex flex-col gap-3 rounded-md border border-black/10 dark:border-white/15 p-4">
+        <div className="flex flex-col gap-3 rounded-md border border-white/10 p-4">
           <div className="flex items-center gap-2 text-sm">
             <span className="font-medium">{character.name}</span>
             <span className="opacity-70">· {result.emotion}</span>
@@ -155,7 +155,7 @@ export function VoiceStudio({
               <a
                 href={result.audio_url}
                 download
-                className="text-xs px-3 py-1.5 rounded bg-black/5 dark:bg-white/10"
+                className="text-xs px-3 py-1.5 rounded bg-white/10"
               >
                 {t("downloadButton")}
               </a>
@@ -164,7 +164,7 @@ export function VoiceStudio({
               type="button"
               onClick={generate}
               disabled={generating}
-              className="text-xs px-3 py-1.5 rounded bg-black/5 dark:bg-white/10 disabled:opacity-50"
+              className="text-xs px-3 py-1.5 rounded bg-white/10 disabled:opacity-50"
             >
               {t("generateAgainButton")}
             </button>

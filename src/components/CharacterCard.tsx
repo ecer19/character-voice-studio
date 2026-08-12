@@ -43,7 +43,7 @@ export function CharacterCard({
   }
 
   return (
-    <div className="flex flex-col gap-4 rounded-xl border border-purple-200/60 dark:border-purple-500/20 bg-white/70 dark:bg-white/5 backdrop-blur-sm p-5 shadow-sm shadow-purple-900/5">
+    <div className="flex flex-col gap-4 rounded-xl border border-purple-500/20 bg-white/[0.03] backdrop-blur-sm p-5 shadow-sm shadow-purple-900/20">
       <div className="flex flex-col sm:flex-row gap-4">
         {character.image_url && (
           <Image
@@ -51,7 +51,7 @@ export function CharacterCard({
             alt={character.name}
             width={160}
             height={160}
-            className="rounded-lg object-cover w-full sm:w-40 h-40 ring-1 ring-purple-200/60 dark:ring-purple-500/20"
+            className="rounded-lg object-cover w-full sm:w-40 h-40 ring-1 ring-purple-500/20"
           />
         )}
         <div className="flex flex-col gap-2">
@@ -76,7 +76,7 @@ export function CharacterCard({
       </button>
 
       {showFullbody && character.fullbody_url && (
-        <div className="relative flex justify-center rounded-lg bg-gradient-to-b from-purple-50 to-white dark:from-purple-950/30 dark:to-transparent p-6 overflow-hidden">
+        <div className="relative flex justify-center rounded-lg bg-gradient-to-b from-purple-950/30 to-transparent p-6 overflow-hidden">
           <Image
             src={character.fullbody_url}
             alt={character.name}
