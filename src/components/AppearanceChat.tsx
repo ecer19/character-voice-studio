@@ -58,19 +58,19 @@ export function AppearanceChat({
   }
 
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-white/10 p-5">
-      <h3 className="text-base font-semibold">{t("editAppearanceHeading")}</h3>
-      <p className="text-xs opacity-60">{t("editAppearanceHint")}</p>
+    <div className="flex flex-col gap-3 border border-white/[0.08] p-6">
+      <h3 className="font-serif text-lg">{t("editAppearanceHeading")}</h3>
+      <p className="text-xs text-ivory-dim">{t("editAppearanceHint")}</p>
 
       {messages.length > 0 && (
         <div className="flex flex-col gap-2 max-h-64 overflow-y-auto">
           {messages.map((m, i) => (
             <div
               key={i}
-              className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm ${
+              className={`flex items-center gap-2 px-3 py-2 text-sm ${
                 m.role === "user"
-                  ? "self-end bg-purple-600 text-white"
-                  : "self-start bg-white/10"
+                  ? "self-end border border-[var(--lux-gold-soft)] text-gold"
+                  : "self-start bg-white/[0.04] text-ivory-dim"
               }`}
             >
               {m.imageUrl && (
@@ -79,7 +79,7 @@ export function AppearanceChat({
                   alt=""
                   width={32}
                   height={32}
-                  className="rounded object-cover"
+                  className="object-cover"
                 />
               )}
               <span>{m.text}</span>
@@ -88,11 +88,11 @@ export function AppearanceChat({
         </div>
       )}
 
-      {error && <p className="text-sm text-red-500">{error}</p>}
+      {error && <p className="text-sm text-red-400">{error}</p>}
 
       <div className="flex gap-2">
         <input
-          className="flex-1 rounded-md border border-white/15 bg-transparent px-3 py-2 text-sm"
+          className="flex-1 border border-white/15 bg-transparent px-3 py-2 text-sm text-ivory focus:border-gold focus:outline-none"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {
@@ -105,7 +105,7 @@ export function AppearanceChat({
           type="button"
           onClick={handleSend}
           disabled={applying || !input.trim()}
-          className="rounded-md bg-purple-600 text-white px-4 py-2 text-sm font-medium disabled:opacity-50"
+          className="btn-gold px-5 py-2 text-xs font-medium uppercase tracking-[0.12em] disabled:opacity-50"
         >
           {applying ? t("editAppearanceApplying") : t("editAppearanceSend")}
         </button>

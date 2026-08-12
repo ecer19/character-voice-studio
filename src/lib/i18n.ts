@@ -36,6 +36,7 @@ const dict = {
   generateSpeechButton: { en: "Generate Speech", tr: "Sesi Oluştur" },
   generateAgainButton: { en: "Generate Again", tr: "Tekrar Oluştur" },
   downloadButton: { en: "Download", tr: "İndir" },
+  viewLargeButton: { en: "View larger", tr: "Büyüt" },
 
   voiceHistoryHeading: { en: "Voice History", tr: "Ses Geçmişi" },
   noRecordingsYet: { en: "No recordings yet.", tr: "Henüz kayıt yok." },
@@ -81,15 +82,16 @@ const dict = {
     tr: "Görünüş güncelleme başarısız oldu",
   },
 
-  landingWelcome: { en: "Welcome", tr: "Hoşgeldiniz" },
+  landingKicker: { en: "AI Character Studio", tr: "Yapay Zekâ Karakter Stüdyosu" },
   landingHeadline: { en: "Give your characters a voice.", tr: "Karakterlerine bir ses ver." },
   landingSubheadline: {
     en: "Design a character, see it come to life, and hear it speak — powered by AI.",
     tr: "Bir karakter tasarla, onu hayat bulmuş şekilde gör ve konuşturmasını dinle — yapay zekâ ile.",
   },
-  landingStartButton: { en: "Get Started", tr: "Başla" },
+  landingStartButton: { en: "Enter the Studio", tr: "Stüdyoya Gir" },
   landingScrollHint: { en: "Scroll to explore", tr: "Keşfetmek için kaydır" },
 
+  landingHowKicker: { en: "The Process", tr: "Süreç" },
   landingHowHeading: { en: "How it works", tr: "Nasıl Çalışır" },
   landingStep1Title: { en: "Design your character", tr: "Karakterini Tasarla" },
   landingStep1Desc: {
@@ -107,6 +109,7 @@ const dict = {
     tr: "Bir metin yaz, bir duygu seç ve karakterinin konuşmasını dinle.",
   },
 
+  landingFeaturesKicker: { en: "Capabilities", tr: "Yetenekler" },
   landingFeaturesHeading: { en: "Everything you need", tr: "İhtiyacın Olan Her Şey" },
   landingFeature1Title: { en: "AI portraits", tr: "Yapay Zekâ Portreleri" },
   landingFeature1Desc: {
@@ -124,9 +127,24 @@ const dict = {
     tr: "Bir değişiklik tarif et, karakterin anında güncellensin.",
   },
 
+  landingShowcaseKicker: { en: "The Result", tr: "Sonuç" },
+  landingShowcaseHeading: {
+    en: "A character, fully realized.",
+    tr: "Tamamen kendine ait bir karakter.",
+  },
+  landingShowcaseDesc: {
+    en: "From a short description to a fully illustrated, voiced character — generated entirely by AI, refined by your words.",
+    tr: "Kısa bir açıklamadan, tamamen çizilmiş ve seslendirilmiş bir karaktere — hepsi yapay zekâ ile üretilir, senin sözlerinle şekillenir.",
+  },
+
+  landingCtaKicker: { en: "Begin", tr: "Başlangıç" },
   landingCtaHeading: {
     en: "Your character is waiting to be heard.",
     tr: "Karakterin, duyulmayı bekliyor.",
+  },
+  landingCtaSub: {
+    en: "No sign-up friction. Just imagination.",
+    tr: "Karmaşık kayıt yok. Sadece hayal gücü.",
   },
 } as const;
 

@@ -6,21 +6,22 @@ export function LanguageToggle() {
   const { lang, setLang } = useLanguage();
 
   return (
-    <div className="inline-flex rounded-full border border-white/15 p-0.5 text-xs">
+    <div className="inline-flex items-center gap-2 text-xs tracking-wide">
       <button
         type="button"
         onClick={() => setLang("tr")}
-        className={`px-2.5 py-1 rounded-full ${
-          lang === "tr" ? "bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white" : "opacity-70"
+        className={`transition-colors ${
+          lang === "tr" ? "text-gold" : "text-ivory-dim hover:text-gold"
         }`}
       >
         TR
       </button>
+      <span className="text-ivory-dim">/</span>
       <button
         type="button"
         onClick={() => setLang("en")}
-        className={`px-2.5 py-1 rounded-full ${
-          lang === "en" ? "bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white" : "opacity-70"
+        className={`transition-colors ${
+          lang === "en" ? "text-gold" : "text-ivory-dim hover:text-gold"
         }`}
       >
         EN

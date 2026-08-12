@@ -51,8 +51,8 @@ export function VoiceStudio({
   }
 
   return (
-    <div className="flex flex-col gap-4 rounded-xl border border-white/10 p-5">
-      <h2 className="text-lg font-semibold">{t("voiceStudioHeading")}</h2>
+    <div className="flex flex-col gap-5 border border-white/[0.08] bg-white/[0.02] p-6">
+      <h2 className="font-serif text-xl">{t("voiceStudioHeading")}</h2>
 
       <div className="flex items-center gap-3">
         {character.image_url && (
@@ -61,43 +61,40 @@ export function VoiceStudio({
             alt={character.name}
             width={48}
             height={48}
-            className="rounded-full object-cover"
+            className="object-cover"
           />
         )}
         <div>
-          <p className="font-medium">{character.name}</p>
-          <p className="text-xs opacity-70">
+          <p className="font-serif">{character.name}</p>
+          <p className="text-xs text-ivory-dim">
             {t("voiceLabel")}: {character.voice}
           </p>
         </div>
       </div>
 
-      <div className="flex flex-col gap-1 text-sm">
-        <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-1.5">
+        <div className="flex items-center justify-between text-xs uppercase tracking-[0.12em] text-ivory-dim">
           <span>{t("speechTextLabel")}</span>
-          <div className="inline-flex rounded-full border border-white/15 p-0.5 text-xs">
+          <div className="inline-flex items-center gap-3 normal-case tracking-normal text-xs">
             <button
               type="button"
               onClick={() => setTextLang("en")}
-              className={`px-2.5 py-1 rounded-full ${
-                textLang === "en" ? "bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white" : "opacity-70"
-              }`}
+              className={textLang === "en" ? "text-gold" : "text-ivory-dim hover:text-gold"}
             >
               {t("textLanguageEnglish")}
             </button>
+            <span className="text-ivory-dim">/</span>
             <button
               type="button"
               onClick={() => setTextLang("tr")}
-              className={`px-2.5 py-1 rounded-full ${
-                textLang === "tr" ? "bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white" : "opacity-70"
-              }`}
+              className={textLang === "tr" ? "text-gold" : "text-ivory-dim hover:text-gold"}
             >
               {t("textLanguageTurkish")}
             </button>
           </div>
         </div>
         <textarea
-          className="rounded-md border border-white/15 bg-transparent px-3 py-2"
+          className="border border-white/15 bg-transparent px-3 py-2 text-sm text-ivory focus:border-gold focus:outline-none"
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder={
@@ -109,7 +106,7 @@ export function VoiceStudio({
         />
       </div>
 
-      <div className="flex flex-col gap-2 text-sm">
+      <div className="flex flex-col gap-2 text-xs uppercase tracking-[0.12em] text-ivory-dim">
         {t("emotionLabel")}
         <div className="flex flex-wrap gap-2">
           {EMOTIONS.map((e) => (
@@ -117,10 +114,10 @@ export function VoiceStudio({
               key={e.label}
               type="button"
               onClick={() => setEmotion(e.label)}
-              className={`text-xs px-3 py-1.5 rounded-full border ${
+              className={`text-xs normal-case tracking-normal px-3 py-1.5 border transition-colors ${
                 emotion === e.label
-                  ? "bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white border-purple-600"
-                  : "border-white/15"
+                  ? "border-gold text-gold bg-[rgba(203,167,105,0.08)]"
+                  : "border-white/15 text-ivory hover:border-white/30"
               }`}
             >
               {e.label}
@@ -129,33 +126,33 @@ export function VoiceStudio({
         </div>
       </div>
 
-      {error && <p className="text-sm text-red-500">{error}</p>}
+      {error && <p className="text-sm text-red-400">{error}</p>}
 
       <button
         type="button"
         onClick={generate}
         disabled={generating || !text.trim()}
-        className="rounded-md bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white px-4 py-2 font-medium disabled:opacity-50"
+        className="btn-gold-fill px-6 py-3 text-sm font-medium uppercase tracking-[0.15em] disabled:opacity-50"
       >
         {generating ? t("generatingButton") : t("generateSpeechButton")}
       </button>
 
       {result && (
-        <div className="flex flex-col gap-3 rounded-md border border-white/10 p-4">
+        <div className="flex flex-col gap-3 border border-white/[0.08] p-4">
           <div className="flex items-center gap-2 text-sm">
-            <span className="font-medium">{character.name}</span>
-            <span className="opacity-70">· {result.emotion}</span>
+            <span className="font-serif">{character.name}</span>
+            <span className="text-ivory-dim">· {result.emotion}</span>
           </div>
-          <p className="text-sm opacity-80">{result.text}</p>
+          <p className="text-sm text-ivory-dim">{result.text}</p>
           {result.audio_url && (
             <audio controls src={result.audio_url} className="w-full" />
           )}
-          <div className="flex gap-2">
+          <div className="flex gap-4 text-xs uppercase tracking-[0.1em]">
             {result.audio_url && (
               <a
                 href={result.audio_url}
                 download
-                className="text-xs px-3 py-1.5 rounded bg-white/10"
+                className="text-ivory-dim hover:text-gold"
               >
                 {t("downloadButton")}
               </a>
@@ -164,7 +161,7 @@ export function VoiceStudio({
               type="button"
               onClick={generate}
               disabled={generating}
-              className="text-xs px-3 py-1.5 rounded bg-white/10 disabled:opacity-50"
+              className="text-ivory-dim hover:text-gold disabled:opacity-50"
             >
               {t("generateAgainButton")}
             </button>

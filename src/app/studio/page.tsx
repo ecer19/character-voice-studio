@@ -47,7 +47,7 @@ export default function StudioPage() {
   }
 
   return (
-    <div className="relative min-h-screen flex-1 bg-[#0b0713] text-white">
+    <div className="relative min-h-screen flex-1 bg-lux-bg text-ivory">
       <Grain />
       <FloatingOrbs />
 
@@ -55,14 +55,14 @@ export default function StudioPage() {
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="sticky top-0 z-40 border-b border-white/10 bg-[#0b0713]/70 backdrop-blur-md"
+        className="sticky top-0 z-40 border-b border-white/[0.06] bg-lux-bg/80 backdrop-blur-md"
       >
         <div className="mx-auto flex w-full max-w-3xl items-center justify-between gap-4 px-4 py-4 sm:px-8">
           <Link href="/" className="group">
-            <h1 className="text-xl font-bold bg-gradient-to-r from-purple-300 to-fuchsia-300 bg-clip-text text-transparent group-hover:opacity-80">
+            <h1 className="font-serif text-xl tracking-wide group-hover:text-gold transition-colors">
               {t("appTitle")}
             </h1>
-            <p className="text-xs text-purple-100/60">{t("appSubtitle")}</p>
+            <p className="text-xs text-ivory-dim">{t("appSubtitle")}</p>
           </Link>
           <LanguageToggle />
         </div>
@@ -70,7 +70,7 @@ export default function StudioPage() {
 
       <main className="relative mx-auto w-full max-w-3xl flex-1 flex flex-col gap-6 p-4 sm:p-8">
         {restoring ? (
-          <p className="text-sm text-purple-100/60">{t("loading")}</p>
+          <p className="text-sm text-ivory-dim">{t("loading")}</p>
         ) : (
           <>
             <motion.div

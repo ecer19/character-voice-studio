@@ -66,14 +66,14 @@ export function CharacterForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-4 rounded-xl border border-white/10 p-5"
+      className="flex flex-col gap-5 border border-white/[0.08] bg-white/[0.02] p-6"
     >
-      <h2 className="text-lg font-semibold">{t("createCharacterHeading")}</h2>
+      <h2 className="font-serif text-xl">{t("createCharacterHeading")}</h2>
 
-      <label className="flex flex-col gap-1 text-sm">
+      <label className="flex flex-col gap-1.5 text-xs uppercase tracking-[0.12em] text-ivory-dim">
         {t("characterNameLabel")}
         <input
-          className="rounded-md border border-white/15 bg-transparent px-3 py-2"
+          className="border border-white/15 bg-transparent px-3 py-2 text-sm normal-case tracking-normal text-ivory focus:border-gold focus:outline-none"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Luna"
@@ -81,10 +81,10 @@ export function CharacterForm({
         />
       </label>
 
-      <label className="flex flex-col gap-1 text-sm">
+      <label className="flex flex-col gap-1.5 text-xs uppercase tracking-[0.12em] text-ivory-dim">
         {t("personalityLabel")}
         <textarea
-          className="rounded-md border border-white/15 bg-transparent px-3 py-2"
+          className="border border-white/15 bg-transparent px-3 py-2 text-sm normal-case tracking-normal text-ivory focus:border-gold focus:outline-none"
           value={personality}
           onChange={(e) => setPersonality(e.target.value)}
           placeholder="Curious, energetic, confident and slightly sarcastic."
@@ -93,10 +93,10 @@ export function CharacterForm({
         />
       </label>
 
-      <label className="flex flex-col gap-1 text-sm">
+      <label className="flex flex-col gap-1.5 text-xs uppercase tracking-[0.12em] text-ivory-dim">
         {t("appearanceLabel")}
         <textarea
-          className="rounded-md border border-white/15 bg-transparent px-3 py-2"
+          className="border border-white/15 bg-transparent px-3 py-2 text-sm normal-case tracking-normal text-ivory focus:border-gold focus:outline-none"
           value={appearance}
           onChange={(e) => setAppearance(e.target.value)}
           placeholder="A young space explorer with silver hair, round glasses and a futuristic blue jacket."
@@ -105,22 +105,22 @@ export function CharacterForm({
         />
       </label>
 
-      <div className="flex flex-col gap-2 text-sm">
+      <div className="flex flex-col gap-2 text-xs uppercase tracking-[0.12em] text-ivory-dim">
         {t("voiceSelectionLabel")}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           {VOICES.map((v) => (
             <div
               key={v}
-              className={`flex flex-col items-center gap-2 rounded-md border p-2 ${
+              className={`flex flex-col items-center gap-2 border p-2 transition-colors ${
                 voice === v
-                  ? "border-purple-500"
+                  ? "border-gold bg-[rgba(203,167,105,0.08)]"
                   : "border-white/15"
               }`}
             >
               <button
                 type="button"
                 onClick={() => setVoice(v)}
-                className="text-sm font-medium"
+                className={`text-sm normal-case tracking-normal ${voice === v ? "text-gold" : "text-ivory"}`}
               >
                 {v}
               </button>
@@ -128,7 +128,7 @@ export function CharacterForm({
                 type="button"
                 onClick={() => handlePreview(v)}
                 disabled={previewingVoice === v}
-                className="text-xs px-2 py-1 rounded bg-white/10 disabled:opacity-50"
+                className="text-[0.65rem] normal-case tracking-normal px-2 py-1 border border-white/15 text-ivory-dim hover:border-white/30 disabled:opacity-50"
               >
                 {previewingVoice === v
                   ? t("previewingButton")
@@ -140,12 +140,12 @@ export function CharacterForm({
       </div>
       <audio ref={audioRef} className="hidden" />
 
-      {error && <p className="text-sm text-red-500">{error}</p>}
+      {error && <p className="text-sm text-red-400">{error}</p>}
 
       <button
         type="submit"
         disabled={submitting}
-        className="rounded-md bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white px-4 py-2 font-medium disabled:opacity-50"
+        className="btn-gold-fill px-6 py-3 text-sm font-medium uppercase tracking-[0.15em] disabled:opacity-50"
       >
         {submitting ? t("generatingButton") : t("generateCharacterButton")}
       </button>

@@ -29,20 +29,20 @@ export function VoiceHistory({ refreshKey }: { refreshKey: number }) {
   }, [refreshKey]);
 
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-white/10 p-5">
-      <h2 className="text-lg font-semibold">{t("voiceHistoryHeading")}</h2>
+    <div className="flex flex-col gap-4 border border-white/[0.08] bg-white/[0.02] p-6">
+      <h2 className="font-serif text-xl">{t("voiceHistoryHeading")}</h2>
 
-      {loading && <p className="text-sm opacity-70">{t("loading")}</p>}
-      {error && <p className="text-sm text-red-500">{error}</p>}
+      {loading && <p className="text-sm text-ivory-dim">{t("loading")}</p>}
+      {error && <p className="text-sm text-red-400">{error}</p>}
       {!loading && recordings.length === 0 && (
-        <p className="text-sm opacity-70">{t("noRecordingsYet")}</p>
+        <p className="text-sm text-ivory-dim">{t("noRecordingsYet")}</p>
       )}
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col">
         {recordings.map((r) => (
           <div
             key={r.id}
-            className="flex flex-col gap-2 rounded-md border border-white/10 p-3"
+            className="flex flex-col gap-2 border-t border-white/[0.08] py-4 first:border-t-0"
           >
             <div className="flex items-center gap-2">
               {r.character?.image_url && (
@@ -51,23 +51,23 @@ export function VoiceHistory({ refreshKey }: { refreshKey: number }) {
                   alt={r.character.name}
                   width={32}
                   height={32}
-                  className="rounded-full object-cover"
+                  className="object-cover"
                 />
               )}
-              <span className="text-sm font-medium">{r.character?.name}</span>
-              <span className="text-xs opacity-60">· {r.emotion}</span>
-              <span className="text-xs opacity-50 ml-auto">
+              <span className="text-sm font-serif">{r.character?.name}</span>
+              <span className="text-xs text-ivory-dim">· {r.emotion}</span>
+              <span className="text-xs text-ivory-dim ml-auto">
                 {new Date(r.created_at).toLocaleString()}
               </span>
             </div>
-            <p className="text-sm opacity-80">{r.text}</p>
+            <p className="text-sm text-ivory-dim">{r.text}</p>
             {r.audio_url && (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <audio controls src={r.audio_url} className="w-full" />
                 <a
                   href={r.audio_url}
                   download
-                  className="text-xs px-3 py-1.5 rounded bg-white/10 whitespace-nowrap"
+                  className="text-xs uppercase tracking-[0.1em] text-ivory-dim hover:text-gold whitespace-nowrap"
                 >
                   {t("downloadButton")}
                 </a>
