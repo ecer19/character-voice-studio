@@ -54,7 +54,7 @@ Centered composition, expressive face, clean background, high-quality digital ch
       .update({
         appearance: updatedAppearance,
         image_url: imageUrl,
-        model_url: null,
+        fullbody_url: null,
       })
       .eq("id", character_id)
       .select()

@@ -1,22 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { useLanguage } from "@/lib/language-context";
 import { AppearanceChat } from "@/components/AppearanceChat";
 import type { Character } from "@/lib/types";
-
-const BACKGROUNDS = [
-  { key: "white", labelKey: "bgWhite", css: "#ffffff" },
-  { key: "purple", labelKey: "bgPurple", css: "linear-gradient(135deg, #a855f7, #4c1d95)" },
-  { key: "dark", labelKey: "bgDark", css: "#0b0713" },
-  {
-    key: "grid",
-    labelKey: "bgGrid",
-    css: "radial-gradient(circle at 50% 30%, #e9d5ff, #f5f3ff)",
-  },
-  { key: "transparent", labelKey: "bgTransparent", css: "transparent" },
-] as const;
 
 export function CharacterCard({
   character,
@@ -26,36 +14,29 @@ export function CharacterCard({
   onUpdated: (character: Character) => void;
 }) {
   const { t } = useLanguage();
-  const [showModel, setShowModel] = useState(false);
+  const [showFullbody, setShowFullbody] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [background, setBackground] = useState<(typeof BACKGROUNDS)[number]>(
-    BACKGROUNDS[3]
-  );
 
-  useEffect(() => {
-    if (showModel) import("@google/model-viewer");
-  }, [showModel]);
-
-  async function handleView3d() {
-    if (character.model_url) {
-      setShowModel(true);
+  async function handleViewFullbody() {
+    if (character.fullbody_url) {
+      setShowFullbody(true);
       return;
     }
     setError(null);
     setGenerating(true);
     try {
-      const res = await fetch("/api/generate-3d-model", {
+      const res = await fetch("/api/generate-fullbody", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ character_id: character.id }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? t("errorModel3d"));
+      if (!res.ok) throw new Error(data.error ?? t("errorFullbody"));
       onUpdated(data.character);
-      setShowModel(true);
+      setShowFullbody(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : t("errorModel3d"));
+      setError(err instanceof Error ? err.message : t("errorFullbody"));
     } finally {
       setGenerating(false);
     }
@@ -81,64 +62,29 @@ export function CharacterCard({
 
       {error && <p className="text-sm text-red-500">{error}</p>}
 
-      <div className="flex flex-wrap items-center gap-3">
-        <button
-          type="button"
-          onClick={handleView3d}
-          disabled={generating}
-          className="rounded-md bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white px-4 py-2 text-sm font-medium disabled:opacity-50"
-        >
-          {generating
-            ? t("generating3dButton")
-            : character.model_url
-              ? t("view3dButton")
-              : t("generate3dButton")}
-        </button>
+      <button
+        type="button"
+        onClick={handleViewFullbody}
+        disabled={generating}
+        className="self-start rounded-md bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white px-4 py-2 text-sm font-medium disabled:opacity-50"
+      >
+        {generating
+          ? t("generatingFullbodyButton")
+          : character.fullbody_url
+            ? t("viewFullbodyButton")
+            : t("generateFullbodyButton")}
+      </button>
 
-        {showModel && character.model_url && (
-          <div className="flex items-center gap-1.5">
-            <span className="text-xs opacity-60">{t("backgroundLabel")}:</span>
-            {BACKGROUNDS.map((bg) => (
-              <button
-                key={bg.key}
-                type="button"
-                title={t(bg.labelKey)}
-                onClick={() => setBackground(bg)}
-                className={`h-6 w-6 rounded-full border-2 ${
-                  background.key === bg.key
-                    ? "border-purple-600"
-                    : "border-black/10 dark:border-white/20"
-                }`}
-                style={{
-                  background:
-                    bg.key === "transparent"
-                      ? "repeating-conic-gradient(#ccc 0% 25%, #fff 0% 50%) 50% / 8px 8px"
-                      : bg.css,
-                }}
-              />
-            ))}
-          </div>
-        )}
-      </div>
-
-      {showModel && character.model_url && (
-        <div
-          className="rounded-lg overflow-hidden"
-          style={{
-            background:
-              background.key === "transparent"
-                ? "repeating-conic-gradient(#ccc 0% 25%, #fff 0% 50%) 50% / 24px 24px"
-                : background.css,
-          }}
-        >
-          <model-viewer
-            src={character.model_url}
+      {showFullbody && character.fullbody_url && (
+        <div className="relative flex justify-center rounded-lg bg-gradient-to-b from-purple-50 to-white dark:from-purple-950/30 dark:to-transparent p-6 overflow-hidden">
+          <Image
+            src={character.fullbody_url}
             alt={character.name}
-            camera-controls
-            auto-rotate
-            shadow-intensity="1"
-            style={{ width: "100%", height: "360px", background: "transparent" }}
+            width={320}
+            height={480}
+            className="animate-character-breathe h-[420px] w-auto object-contain drop-shadow-xl"
           />
+          <div className="animate-character-shadow absolute bottom-4 h-4 w-40 rounded-full bg-purple-900/30 blur-md" />
         </div>
       )}
 

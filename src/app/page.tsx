@@ -1,20 +1,16 @@
 "use client";
 
-import { useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useLanguage } from "@/lib/language-context";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { FloatingOrbs } from "@/components/FloatingOrbs";
 
-const SHOWCASE_MODEL_URL =
-  "https://epconbbigrjdwhkcjlhn.supabase.co/storage/v1/object/public/character%20voice%20studio/models/0f724313-37a7-4ac6-8d6f-d9924701bf5c.glb";
+const SHOWCASE_FULLBODY_URL =
+  "https://epconbbigrjdwhkcjlhn.supabase.co/storage/v1/object/public/character%20voice%20studio/fullbody/fd242ea7-4ba9-49fb-b444-a23470c71df8.jpeg";
 
 export default function LandingPage() {
   const { t } = useLanguage();
-
-  useEffect(() => {
-    import("@google/model-viewer");
-  }, []);
 
   return (
     <div className="relative min-h-screen flex-1 overflow-hidden bg-gradient-to-br from-white via-purple-50 to-purple-200 dark:from-[#0b0713] dark:via-[#170b28] dark:to-[#2a1147]">
@@ -42,19 +38,21 @@ export default function LandingPage() {
           {t("landingStartButton")}
         </Link>
 
-        <div className="mt-6 w-full max-w-md rounded-3xl border border-purple-200/60 bg-white/50 p-2 shadow-2xl shadow-purple-500/20 backdrop-blur-sm dark:border-purple-500/20 dark:bg-white/5">
-          <model-viewer
-            src={SHOWCASE_MODEL_URL}
-            alt="Character Voice Studio showcase character"
-            camera-controls
-            auto-rotate
-            shadow-intensity="1"
+        <div className="relative mt-6 flex w-full max-w-md justify-center overflow-hidden rounded-3xl border border-purple-200/60 bg-white/50 p-6 shadow-2xl shadow-purple-500/20 backdrop-blur-sm dark:border-purple-500/20 dark:bg-white/5">
+          <div
+            className="absolute inset-0"
             style={{
-              width: "100%",
-              height: "420px",
               background:
                 "radial-gradient(circle at 50% 30%, rgba(233,213,255,0.6), transparent 70%)",
             }}
+          />
+          <Image
+            src={SHOWCASE_FULLBODY_URL}
+            alt="Character Voice Studio showcase character"
+            width={340}
+            height={480}
+            className="animate-character-breathe relative h-[420px] w-auto object-contain drop-shadow-2xl"
+            priority
           />
         </div>
       </main>

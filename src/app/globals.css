@@ -46,3 +46,15 @@ body {
 .animate-float-b { animation: float-b 11s ease-in-out infinite; }
 .animate-float-c { animation: float-c 7s ease-in-out infinite; }
 .animate-drift-slow { animation: drift-slow 14s linear infinite alternate; }
+
+@keyframes character-breathe {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.008); }
+}
+@keyframes character-shadow {
+  0%, 100% { transform: scaleX(1); opacity: 0.35; }
+  50% { transform: scaleX(0.92); opacity: 0.25; }
+}
+
+.animate-character-breathe { animation: character-breathe 4.5s ease-in-out infinite; }
+.animate-character-shadow { animation: character-shadow 4.5s ease-in-out infinite; }

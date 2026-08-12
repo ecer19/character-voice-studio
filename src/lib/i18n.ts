@@ -50,23 +50,16 @@ const dict = {
   },
   errorPreview: { en: "Preview failed", tr: "Önizleme başarısız oldu" },
 
-  view3dButton: { en: "View in 3D", tr: "3D Görüntüle" },
-  generate3dButton: { en: "Generate 3D Model", tr: "3D Model Oluştur" },
-  generating3dButton: {
-    en: "Generating 3D model… this can take a few minutes",
-    tr: "3D model oluşturuluyor… bu birkaç dakika sürebilir",
+  viewFullbodyButton: { en: "View Full Body", tr: "Tam Boy Görüntüle" },
+  generateFullbodyButton: { en: "Generate Full Body", tr: "Tam Boy Oluştur" },
+  generatingFullbodyButton: {
+    en: "Generating full-body view…",
+    tr: "Tam boy görünüm oluşturuluyor…",
   },
-  errorModel3d: {
-    en: "3D model generation failed",
-    tr: "3D model oluşturma başarısız oldu",
+  errorFullbody: {
+    en: "Full-body generation failed",
+    tr: "Tam boy görünüm oluşturma başarısız oldu",
   },
-
-  backgroundLabel: { en: "3D Background", tr: "3D Arka Plan" },
-  bgWhite: { en: "White", tr: "Beyaz" },
-  bgPurple: { en: "Purple", tr: "Mor" },
-  bgDark: { en: "Dark", tr: "Koyu" },
-  bgGrid: { en: "Studio", tr: "Stüdyo" },
-  bgTransparent: { en: "Transparent", tr: "Şeffaf" },
 
   editAppearanceHeading: { en: "Edit Appearance", tr: "Görünüşü Düzenle" },
   editAppearancePlaceholder: {
@@ -80,8 +73,8 @@ const dict = {
     tr: "Tamamdır — güncellenmiş görünüş bu.",
   },
   editAppearanceHint: {
-    en: "3D model will need to be regenerated after an appearance change.",
-    tr: "Görünüş değiştiğinde 3D modelin yeniden oluşturulması gerekir.",
+    en: "The full-body view will need to be regenerated after an appearance change.",
+    tr: "Görünüş değiştiğinde tam boy görünümün yeniden oluşturulması gerekir.",
   },
   errorEditAppearance: {
     en: "Appearance update failed",
@@ -90,8 +83,8 @@ const dict = {
 
   landingHeadline: { en: "Give your characters a voice.", tr: "Karakterlerine bir ses ver." },
   landingSubheadline: {
-    en: "Design a character, see it in 3D, and hear it speak — powered by AI.",
-    tr: "Bir karakter tasarla, onu 3D olarak gör ve konuşturmasını dinle — yapay zekâ ile.",
+    en: "Design a character, see it come to life, and hear it speak — powered by AI.",
+    tr: "Bir karakter tasarla, onu hayat bulmuş şekilde gör ve konuşturmasını dinle — yapay zekâ ile.",
   },
   landingStartButton: { en: "Get Started", tr: "Başla" },
 } as const;
