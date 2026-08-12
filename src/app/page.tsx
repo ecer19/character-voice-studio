@@ -24,6 +24,9 @@ export default function LandingPage() {
       </header>
 
       <main className="relative mx-auto flex max-w-5xl flex-col items-center gap-8 px-4 pb-16 pt-4 text-center sm:pt-10">
+        <span className="rounded-full border border-purple-300/60 bg-white/60 px-4 py-1 text-sm font-medium text-purple-700 backdrop-blur-sm dark:border-purple-400/30 dark:bg-white/5 dark:text-purple-200">
+          ✦ {t("landingWelcome")}
+        </span>
         <h1 className="max-w-2xl text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-fuchsia-600 to-purple-500 dark:from-purple-200 dark:via-fuchsia-200 dark:to-purple-300 sm:text-6xl">
           {t("landingHeadline")}
         </h1>

@@ -81,6 +81,7 @@ const dict = {
     tr: "Görünüş güncelleme başarısız oldu",
   },
 
+  landingWelcome: { en: "Welcome", tr: "Hoşgeldiniz" },
   landingHeadline: { en: "Give your characters a voice.", tr: "Karakterlerine bir ses ver." },
   landingSubheadline: {
     en: "Design a character, see it come to life, and hear it speak — powered by AI.",
