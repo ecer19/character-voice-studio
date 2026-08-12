@@ -23,14 +23,19 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Character not found" }, { status: 404 });
     }
 
-    const fullBodyPrompt = `Full-body character reference sheet, head to toe, standing in a neutral pose, facing forward.
+    const fullBodyPrompt = `Full-body character reference sheet, head to toe, standing in a symmetrical T-pose, facing directly forward, arms slightly away from body.
 Character name: ${character.name}
 Personality: ${character.personality}
 Appearance: ${character.appearance}
-Centered composition, plain clean background, even lighting, high-quality digital character illustration.`;
+Sharp, highly detailed, symmetrical facial features, clear eyes, well-defined nose and mouth, studio lighting, no harsh shadows on the face.
+Centered composition, plain flat neutral grey background, high-resolution digital character illustration, 3D-render-ready concept art.`;
 
-    const imageResult = await fal.subscribe("fal-ai/flux/schnell", {
-      input: { prompt: fullBodyPrompt, image_size: "portrait_16_9" },
+    const imageResult = await fal.subscribe("fal-ai/flux/dev", {
+      input: {
+        prompt: fullBodyPrompt,
+        image_size: { width: 1024, height: 1536 },
+        num_inference_steps: 35,
+      },
     });
     const fullBodyImage = imageResult.data.images?.[0];
     if (!fullBodyImage?.url) {
@@ -44,6 +49,8 @@ Centered composition, plain clean background, even lighting, high-quality digita
       input: {
         input_image_url: fullBodyImage.url,
         textured_mesh: true,
+        octree_resolution: 512,
+        num_inference_steps: 50,
       },
     });
     const mesh = meshResult.data.model_mesh;

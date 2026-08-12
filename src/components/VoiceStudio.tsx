@@ -80,7 +80,7 @@ export function VoiceStudio({
               type="button"
               onClick={() => setTextLang("en")}
               className={`px-2.5 py-1 rounded-full ${
-                textLang === "en" ? "bg-blue-600 text-white" : "opacity-70"
+                textLang === "en" ? "bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white" : "opacity-70"
               }`}
             >
               {t("textLanguageEnglish")}
@@ -89,7 +89,7 @@ export function VoiceStudio({
               type="button"
               onClick={() => setTextLang("tr")}
               className={`px-2.5 py-1 rounded-full ${
-                textLang === "tr" ? "bg-blue-600 text-white" : "opacity-70"
+                textLang === "tr" ? "bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white" : "opacity-70"
               }`}
             >
               {t("textLanguageTurkish")}
@@ -119,7 +119,7 @@ export function VoiceStudio({
               onClick={() => setEmotion(e.label)}
               className={`text-xs px-3 py-1.5 rounded-full border ${
                 emotion === e.label
-                  ? "bg-blue-600 text-white border-blue-600"
+                  ? "bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white border-purple-600"
                   : "border-black/15 dark:border-white/20"
               }`}
             >
@@ -135,7 +135,7 @@ export function VoiceStudio({
         type="button"
         onClick={generate}
         disabled={generating || !text.trim()}
-        className="rounded-md bg-blue-600 text-white px-4 py-2 font-medium disabled:opacity-50"
+        className="rounded-md bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white px-4 py-2 font-medium disabled:opacity-50"
       >
         {generating ? t("generatingButton") : t("generateSpeechButton")}
       </button>

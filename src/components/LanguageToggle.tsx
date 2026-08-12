@@ -11,7 +11,7 @@ export function LanguageToggle() {
         type="button"
         onClick={() => setLang("tr")}
         className={`px-2.5 py-1 rounded-full ${
-          lang === "tr" ? "bg-blue-600 text-white" : "opacity-70"
+          lang === "tr" ? "bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white" : "opacity-70"
         }`}
       >
         TR
@@ -20,7 +20,7 @@ export function LanguageToggle() {
         type="button"
         onClick={() => setLang("en")}
         className={`px-2.5 py-1 rounded-full ${
-          lang === "en" ? "bg-blue-600 text-white" : "opacity-70"
+          lang === "en" ? "bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white" : "opacity-70"
         }`}
       >
         EN

@@ -113,7 +113,7 @@ export function CharacterForm({
               key={v}
               className={`flex flex-col items-center gap-2 rounded-md border p-2 ${
                 voice === v
-                  ? "border-blue-500"
+                  ? "border-purple-500"
                   : "border-black/15 dark:border-white/20"
               }`}
             >
@@ -145,7 +145,7 @@ export function CharacterForm({
       <button
         type="submit"
         disabled={submitting}
-        className="rounded-md bg-blue-600 text-white px-4 py-2 font-medium disabled:opacity-50"
+        className="rounded-md bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white px-4 py-2 font-medium disabled:opacity-50"
       >
         {submitting ? t("generatingButton") : t("generateCharacterButton")}
       </button>
